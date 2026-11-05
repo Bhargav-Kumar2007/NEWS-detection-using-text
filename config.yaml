@@ -1,0 +1,78 @@
+# =============================================================================
+# Fakeddit fake-news detection - central configuration
+# Any value can be overridden from the command line, e.g.
+#   python train.py --set training.epochs=5 model.embed_dim=300
+# =============================================================================
+seed: 42
+
+paths:
+  data_dir: data/raw        # where the Fakeddit .tsv files live (relative to project root)
+  output_dir: outputs       # runs are written to outputs/<model>_<mode>/
+
+data:
+  # Official Fakeddit v2.0 text/metadata folder (linked from the dataset's GitHub page)
+  gdrive_folder_id: "1jU7qgDqU1je9Y0PMKJ_f31yXRo5uWGFm"
+  variant: all                    # all | multimodal_only  (multimodal_only = samples that also have an image)
+  text_column: clean_title        # official filtered text field
+  label_column: "2_way_label"     # official 2-way label
+  # Optional explicit file names (relative to data_dir). Leave null for auto-detection.
+  files:
+    train: null
+    validation: null
+    test: null
+  mode: small                     # default when --mode is not passed: small | full
+  subset_sizes:                   # stratified random subsets (null = use the whole official split)
+    small:
+      train: 50000
+      validation: 5000
+      test: 5000
+    full:
+      train: null
+      validation: null
+      test: null
+
+labels:
+  # Names shown in reports/plots, index = label id. VERIFY against the dataset paper
+  # and rename (e.g. ["fake", "real"]) - see README "Label semantics".
+  class_names: ["label_0", "label_1"]
+  threshold: 0.5                  # probability of label 1 above which label 1 is predicted
+
+preprocessing:
+  lowercase: true
+  replace_urls: true              # URLs are removed during cleaning
+  max_vocab_size: 50000           # includes <pad> and <unk>
+  min_freq: 2                     # words rarer than this become <unk>
+  max_len: 50                     # sequences are truncated / padded to this length
+
+model:
+  type: bilstm                    # bilstm | textcnn
+  embed_dim: 200
+  dropout: 0.4
+  fc_dim: 128                     # size of the feature vector returned by extract_features()
+  bilstm:
+    hidden_dim: 128
+    num_layers: 1
+  textcnn:
+    num_filters: 128
+    kernel_sizes: [2, 3, 4, 5]
+
+training:
+  epochs: 20
+  batch_size: 256
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  use_amp: true                   # mixed precision, only used on CUDA GPUs
+  num_workers: 0                  # 0 is safest on Windows; 2 is fine on Linux/Colab
+  device: auto                    # auto | cpu | cuda | mps
+  monitor: val_f1                 # val_loss | val_accuracy | val_f1 | val_roc_auc
+  early_stopping_patience: 0
+  min_delta: 0.0005
+  lr_scheduler_patience: 1        # ReduceLROnPlateau on validation loss
+  lr_scheduler_factor: 0.5
+  use_pos_weight: false           # re-weight the positive class in the loss
+  save_every_epoch: true          # also keep checkpoints/epoch_XX.pt
+
+inference:
+  batch_size: 512
+  default_run: null               # e.g. "bilstm_full"; null = most recently trained run

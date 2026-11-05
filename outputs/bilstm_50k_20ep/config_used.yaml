@@ -1,0 +1,68 @@
+seed: 42
+paths:
+  data_dir: data/raw
+  output_dir: outputs
+data:
+  gdrive_folder_id: 1jU7qgDqU1je9Y0PMKJ_f31yXRo5uWGFm
+  variant: all
+  text_column: clean_title
+  label_column: 2_way_label
+  files:
+    train: null
+    validation: null
+    test: null
+  mode: small
+  subset_sizes:
+    small:
+      train: 50000
+      validation: 5000
+      test: 5000
+    full:
+      train: null
+      validation: null
+      test: null
+labels:
+  class_names:
+  - label_0
+  - label_1
+  threshold: 0.5
+preprocessing:
+  lowercase: true
+  replace_urls: true
+  max_vocab_size: 50000
+  min_freq: 2
+  max_len: 50
+model:
+  type: bilstm
+  embed_dim: 200
+  dropout: 0.4
+  fc_dim: 128
+  bilstm:
+    hidden_dim: 128
+    num_layers: 1
+  textcnn:
+    num_filters: 128
+    kernel_sizes:
+    - 2
+    - 3
+    - 4
+    - 5
+training:
+  epochs: 20
+  batch_size: 256
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  use_amp: true
+  num_workers: 0
+  device: auto
+  monitor: val_f1
+  early_stopping_patience: 0
+  min_delta: 0.0005
+  lr_scheduler_patience: 1
+  lr_scheduler_factor: 0.5
+  use_pos_weight: false
+  save_every_epoch: true
+inference:
+  batch_size: 512
+  default_run: null

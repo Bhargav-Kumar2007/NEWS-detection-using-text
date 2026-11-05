@@ -1,0 +1,27 @@
+21:23:55 | INFO | Run: bilstm_50k_20ep | mode=small | model=bilstm
+21:23:55 | INFO | Device: cpu | mixed precision: False
+21:24:03 | INFO | [train] all_train.tsv -> 50000/878218 rows | label 0: 27202, label 1: 22798
+21:24:04 | INFO | [validation] all_validate.tsv -> 5000/92444 rows | label 0: 2721, label 1: 2279
+21:24:04 | INFO | [test] all_test_public.tsv -> 5000/92444 rows | label 0: 2710, label 1: 2290
+21:24:05 | INFO | Vocabulary: 16449 tokens kept (from 33594 distinct words, min_freq=2)
+21:24:05 | INFO | Tokenizer saved to D:\PROJECTS\NNDL\fakeddit_fake_news\fakeddit_fake_news\outputs\bilstm_50k_20ep\tokenizer.json
+21:24:06 | INFO | Model: bilstm | trainable parameters: 3,693,513
+21:26:42 | INFO | Epoch 01/20 | train loss 0.5268 acc 0.7238 | val loss 0.4651 acc 0.7774 P 0.7650 R 0.7385 F1 0.7515 AUC 0.8596 | 130s
+21:26:42 | INFO |   -> new best (val_f1=0.7515), saved checkpoints/best_model.pt
+21:28:48 | INFO | Epoch 02/20 | train loss 0.4495 acc 0.7858 | val loss 0.4322 acc 0.8004 P 0.7711 R 0.7995 F1 0.7850 AUC 0.8788 | 119s
+21:28:48 | INFO |   -> new best (val_f1=0.7850), saved checkpoints/best_model.pt
+21:30:10 | INFO | Epoch 03/20 | train loss 0.4134 acc 0.8092 | val loss 0.4232 acc 0.8066 P 0.7936 R 0.7780 F1 0.7857 AUC 0.8865 | 82s
+21:30:10 | INFO |   -> new best (val_f1=0.7857), saved checkpoints/best_model.pt
+21:32:24 | INFO | Epoch 04/20 | train loss 0.3872 acc 0.8256 | val loss 0.4187 acc 0.8120 P 0.7938 R 0.7938 F1 0.7938 AUC 0.8924 | 133s
+21:32:24 | INFO |   -> new best (val_f1=0.7938), saved checkpoints/best_model.pt
+21:34:29 | INFO | Epoch 05/20 | train loss 0.3635 acc 0.8383 | val loss 0.4222 acc 0.8104 P 0.8060 R 0.7692 F1 0.7872 AUC 0.8928 | 124s
+21:36:06 | INFO | Epoch 06/20 | train loss 0.3425 acc 0.8497 | val loss 0.4291 acc 0.8142 P 0.8024 R 0.7859 F1 0.7941 AUC 0.8919 | 96s
+21:37:30 | INFO | Epoch 07/20 | train loss 0.3178 acc 0.8642 | val loss 0.4376 acc 0.8130 P 0.8057 R 0.7771 F1 0.7912 AUC 0.8950 | 84s
+21:39:12 | INFO | Epoch 08/20 | train loss 0.3058 acc 0.8695 | val loss 0.4402 acc 0.8138 P 0.8047 R 0.7810 F1 0.7927 AUC 0.8947 | 101s
+21:40:54 | INFO | Epoch 09/20 | train loss 0.2889 acc 0.8771 | val loss 0.4562 acc 0.8144 P 0.7985 R 0.7929 F1 0.7957 AUC 0.8963 | 101s
+21:40:54 | INFO |   -> new best (val_f1=0.7957), saved checkpoints/best_model.pt
+21:42:18 | INFO | Epoch 10/20 | train loss 0.2844 acc 0.8787 | val loss 0.4628 acc 0.8098 P 0.8063 R 0.7670 F1 0.7861 AUC 0.8946 | 83s
+21:43:17 | INFO | Epoch 11/20 | train loss 0.2751 acc 0.8831 | val loss 0.4648 acc 0.8110 P 0.7978 R 0.7841 F1 0.7909 AUC 0.8948 | 59s
+21:44:18 | INFO | Epoch 12/20 | train loss 0.2712 acc 0.8859 | val loss 0.4716 acc 0.8100 P 0.8052 R 0.7692 F1 0.7868 AUC 0.8944 | 61s
+21:46:06 | INFO | Epoch 13/20 | train loss 0.2687 acc 0.8861 | val loss 0.4775 acc 0.8094 P 0.8044 R 0.7688 F1 0.7862 AUC 0.8939 | 107s
+21:47:49 | INFO | Epoch 14/20 | train loss 0.2654 acc 0.8886 | val loss 0.4793 acc 0.8104 P 0.8026 R 0.7745 F1 0.7883 AUC 0.8940 | 101s

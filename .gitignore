@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv*/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Data and large artifacts (never commit)
+data/
+*.tsv
+*.zip
+*.tar.gz
+
+# Checkpoints: ignore intermediate epoch saves, keep best and last
+epoch_*.pt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
